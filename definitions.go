@@ -121,4 +121,5 @@ type ScriptPubKeyObject struct {
 type GetUnspentTransactionsRequest struct {
 	Address   string   `json:"addrs"` // single address or addr1,addr2,addr3
 	Addresses []string `json:"-"`     // (used for multiple)
+	Sort      string   `json:"sort"`  // Format is 'field:asc' such as 'value:desc' to sort by value descending
 }

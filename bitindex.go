@@ -261,9 +261,15 @@ func (c *Client) GetUnspentTransactions(transactionRequest *GetUnspentTransactio
 		return
 	}
 
+	// Do we have a sort
+	endpoint := "addrs/utxo"
+	if len(transactionRequest.Sort) > 0 {
+		endpoint = fmt.Sprintf("%s?sort=%s", endpoint, transactionRequest.Sort)
+	}
+
 	var resp string
 	// /api/v3/network/addrs/utxo
-	resp, err = c.Request("addrs/utxo", "POST", data)
+	resp, err = c.Request(endpoint, "POST", data)
 	if err != nil {
 		return
 	}
