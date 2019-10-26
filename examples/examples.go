@@ -22,6 +22,9 @@ func main() {
 		log.Fatal(err.Error())
 	}
 
+	// Set test net?
+	//client.Parameters.Network = bitindex.NetworkTest
+
 	// Get balance for an address
 	var info *bitindex.AddressInfo
 	info, err = client.AddressInfo("16ZqP5Tb22KJuvSAbjNkoiZs13mmRmexZA")
