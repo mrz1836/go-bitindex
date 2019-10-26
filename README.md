@@ -84,7 +84,7 @@ $ go test -bench . -benchmem
 Read more about this Go project's [code standards](CODE_STANDARDS.md).
 
 ## Usage
-- View the [bitindex examples](bitindex_test.go)
+- View the [bitindex examples](#examples--tests) above
 
 Basic implementation:
 ```golang
