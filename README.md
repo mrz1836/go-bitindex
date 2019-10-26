@@ -38,15 +38,15 @@ You can view the generated [documentation here](https://godoc.org/github.com/mrz
 ### Features
 - Client is completely configurable
 - Customize User Agent per request
-- Customize the network per request (main, test or stn)
+- Customize the network per request (`main`, `test` or `stn`)
 - Using [heimdall http client](https://github.com/gojek/heimdall) with exponential backoff & more
 - Current coverage for the [bitindex.com](https://developers.bitindex.com/) API
     - [x] Address
+    - [x] Block
+    - [x] Chain Info
     - [x] Transaction
-    - [ ] Chain Info
-    - [ ] Block
+    - [x] Webhooks
     - [ ] Xpub
-    - [ ] Webhooks
 
 ## Examples & Tests
 All unit tests and [examples](bitindex_test.go) run via [Travis CI](https://travis-ci.org/mrz1836/go-bitindex) and uses [Go version 1.13.x](https://golang.org/doc/go1.13). View the [deployment configuration file](.travis.yml).
