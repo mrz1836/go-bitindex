@@ -11,6 +11,7 @@ import (
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Transactions
 func (c *Client) GetTransaction(txID string) (transaction *Transaction, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/tx/txid
 	resp, err = c.Request("tx/"+txID, http.MethodGet, nil)
@@ -18,8 +19,15 @@ func (c *Client) GetTransaction(txID string) (transaction *Transaction, err erro
 		return
 	}
 
+	// Process the response
 	transaction = new(Transaction)
 	if err = json.Unmarshal([]byte(resp), transaction); err != nil {
+		return
+	}
+
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", transaction.ErrorMessage)
 		return
 	}
 	return
@@ -30,6 +38,7 @@ func (c *Client) GetTransaction(txID string) (transaction *Transaction, err erro
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Transactions
 func (c *Client) GetTransactionRaw(txID string) (rawTx *TransactionRaw, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/rawtx/txid
 	resp, err = c.Request("rawtx/"+txID, http.MethodGet, nil)
@@ -37,8 +46,15 @@ func (c *Client) GetTransactionRaw(txID string) (rawTx *TransactionRaw, err erro
 		return
 	}
 
+	// Process the response
 	rawTx = new(TransactionRaw)
 	if err = json.Unmarshal([]byte(resp), rawTx); err != nil {
+		return
+	}
+
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", rawTx.ErrorMessage)
 		return
 	}
 	return
@@ -49,6 +65,7 @@ func (c *Client) GetTransactionRaw(txID string) (rawTx *TransactionRaw, err erro
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Transactions
 func (c *Client) SendTransaction(rawTx string) (txID *SendTransactionResponse, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/tx/send
 	resp, err = c.Request("tx/send", http.MethodPost, []byte(fmt.Sprintf(`{"rawtx":"%s"}`, rawTx)))
@@ -56,8 +73,15 @@ func (c *Client) SendTransaction(rawTx string) (txID *SendTransactionResponse, e
 		return
 	}
 
+	// Process the response
 	txID = new(SendTransactionResponse)
 	if err = json.Unmarshal([]byte(resp), txID); err != nil {
+		return
+	}
+
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", txID.Message.ErrorMessage)
 		return
 	}
 	return

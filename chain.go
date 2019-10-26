@@ -10,6 +10,7 @@ import (
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#ChainInfo
 func (c *Client) ChainInfo() (chainInfo *ChainInfoResponse, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/status
 	resp, err = c.Request("status?q=chainInfo", http.MethodGet, nil)
@@ -17,6 +18,7 @@ func (c *Client) ChainInfo() (chainInfo *ChainInfoResponse, err error) {
 		return
 	}
 
+	// Process the response
 	chainInfo = new(ChainInfoResponse)
 	if err = json.Unmarshal([]byte(resp), chainInfo); err != nil {
 		return
@@ -29,6 +31,7 @@ func (c *Client) ChainInfo() (chainInfo *ChainInfoResponse, err error) {
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#ChainInfo
 func (c *Client) ChainDifficulty() (difficulty *ChainDifficultyResponse, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/status
 	resp, err = c.Request("status?q=getDifficulty", http.MethodGet, nil)
@@ -36,6 +39,7 @@ func (c *Client) ChainDifficulty() (difficulty *ChainDifficultyResponse, err err
 		return
 	}
 
+	// Process the response
 	difficulty = new(ChainDifficultyResponse)
 	if err = json.Unmarshal([]byte(resp), difficulty); err != nil {
 		return
@@ -48,6 +52,7 @@ func (c *Client) ChainDifficulty() (difficulty *ChainDifficultyResponse, err err
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#ChainInfo
 func (c *Client) ChainBestBlockHash() (bestBlockHash *ChainBestBlockHashResponse, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/status
 	resp, err = c.Request("status?q=getBestBlockHash", http.MethodGet, nil)
@@ -55,6 +60,7 @@ func (c *Client) ChainBestBlockHash() (bestBlockHash *ChainBestBlockHashResponse
 		return
 	}
 
+	// Process the response
 	bestBlockHash = new(ChainBestBlockHashResponse)
 	if err = json.Unmarshal([]byte(resp), bestBlockHash); err != nil {
 		return
@@ -67,6 +73,7 @@ func (c *Client) ChainBestBlockHash() (bestBlockHash *ChainBestBlockHashResponse
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#ChainInfo
 func (c *Client) ChainLastBlockHash() (lastBlockHash *ChainLastBlockHashResponse, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/status
 	resp, err = c.Request("status?q=getLastBlockHash", http.MethodGet, nil)
@@ -74,6 +81,7 @@ func (c *Client) ChainLastBlockHash() (lastBlockHash *ChainLastBlockHashResponse
 		return
 	}
 
+	// Process the response
 	lastBlockHash = new(ChainLastBlockHashResponse)
 	if err = json.Unmarshal([]byte(resp), lastBlockHash); err != nil {
 		return

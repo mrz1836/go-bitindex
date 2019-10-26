@@ -19,6 +19,7 @@ func (c *Client) GetXpubNextAddress(xPub string, reserveTimeSeconds int) (addres
 		endpoint = fmt.Sprintf("%s?reserveTime=%d", endpoint, reserveTimeSeconds)
 	}
 
+	// Create the request
 	var resp string
 	// /api/v3/network/xpub/xpub/addrs/next
 	resp, err = c.Request(endpoint, http.MethodGet, nil)
@@ -26,6 +27,17 @@ func (c *Client) GetXpubNextAddress(xPub string, reserveTimeSeconds int) (addres
 		return
 	}
 
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		var apiError APIInternalError
+		if err = json.Unmarshal([]byte(resp), &apiError); err != nil {
+			return
+		}
+		err = fmt.Errorf("error: %s", apiError.ErrorMessage)
+		return
+	}
+
+	// Process the response
 	addresses = *new(XpubAddresses)
 	if err = json.Unmarshal([]byte(resp), &addresses); err != nil {
 		return
@@ -63,6 +75,7 @@ func (c *Client) GetXpubAddresses(xPub string, offset, limit int, order, filterB
 		endpoint = endpoint + "?" + queryString
 	}
 
+	// Create the request
 	var resp string
 	// /api/v3/network/xpub/xpub/addrs
 	resp, err = c.Request(endpoint, http.MethodGet, nil)
@@ -70,6 +83,17 @@ func (c *Client) GetXpubAddresses(xPub string, offset, limit int, order, filterB
 		return
 	}
 
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		var apiError APIInternalError
+		if err = json.Unmarshal([]byte(resp), &apiError); err != nil {
+			return
+		}
+		err = fmt.Errorf("error: %s", apiError.ErrorMessage)
+		return
+	}
+
+	// Process the response
 	addresses = *new(XpubAddresses)
 	if err = json.Unmarshal([]byte(resp), &addresses); err != nil {
 		return
@@ -82,6 +106,7 @@ func (c *Client) GetXpubAddresses(xPub string, offset, limit int, order, filterB
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Xpub
 func (c *Client) GetXpubBalance(xPub string) (balance *XpubBalance, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/xpub/xpub/status
 	resp, err = c.Request("xpub/"+xPub+"/status", http.MethodGet, nil)
@@ -89,8 +114,15 @@ func (c *Client) GetXpubBalance(xPub string) (balance *XpubBalance, err error) {
 		return
 	}
 
+	// Process the response
 	balance = new(XpubBalance)
 	if err = json.Unmarshal([]byte(resp), balance); err != nil {
+		return
+	}
+
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", balance.ErrorMessage)
 		return
 	}
 	return
@@ -106,6 +138,7 @@ func (c *Client) GetXpubUnspentTransactions(xPub, sort string) (transactions Uns
 		endpoint = endpoint + "?sort=" + sort
 	}
 
+	// Create the request
 	var resp string
 	// /api/v3/network/xpub/xpub/utxo
 	resp, err = c.Request(endpoint, http.MethodGet, nil)
@@ -113,12 +146,17 @@ func (c *Client) GetXpubUnspentTransactions(xPub, sort string) (transactions Uns
 		return
 	}
 
-	// Error?
+	// Error from request?
 	if c.LastRequest.StatusCode != http.StatusOK {
-		err = fmt.Errorf("error: %s", resp)
+		var apiError APIInternalError
+		if err = json.Unmarshal([]byte(resp), &apiError); err != nil {
+			return
+		}
+		err = fmt.Errorf("error: %s", apiError.ErrorMessage)
 		return
 	}
 
+	// Process the response
 	transactions = *new(UnspentTransactions)
 	if err = json.Unmarshal([]byte(resp), &transactions); err != nil {
 		return
@@ -131,6 +169,7 @@ func (c *Client) GetXpubUnspentTransactions(xPub, sort string) (transactions Uns
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Xpub
 func (c *Client) GetXpubTransactions(xPub string) (transactions XpubAddresses, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/xpub/xpub/txs
 	resp, err = c.Request("xpub/"+xPub+"/txs", http.MethodGet, nil)
@@ -138,6 +177,17 @@ func (c *Client) GetXpubTransactions(xPub string) (transactions XpubAddresses, e
 		return
 	}
 
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		var apiError APIInternalError
+		if err = json.Unmarshal([]byte(resp), &apiError); err != nil {
+			return
+		}
+		err = fmt.Errorf("error: %s", apiError.ErrorMessage)
+		return
+	}
+
+	// Process the response
 	transactions = *new(XpubAddresses)
 	if err = json.Unmarshal([]byte(resp), &transactions); err != nil {
 		return

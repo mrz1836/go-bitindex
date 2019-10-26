@@ -2,6 +2,7 @@ package bitindex
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -33,6 +34,7 @@ import (
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) GetWebhookConfig() (config *WebhookConfigResponse, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/webhook/endpoint
 	resp, err = c.Request("webhook/endpoint", http.MethodGet, nil)
@@ -40,8 +42,15 @@ func (c *Client) GetWebhookConfig() (config *WebhookConfigResponse, err error) {
 		return
 	}
 
+	// Process the response
 	config = new(WebhookConfigResponse)
 	if err = json.Unmarshal([]byte(resp), config); err != nil {
+		return
+	}
+
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", config.ErrorMessage)
 		return
 	}
 	return
@@ -52,12 +61,14 @@ func (c *Client) GetWebhookConfig() (config *WebhookConfigResponse, err error) {
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) UpdateWebhookConfig(updateConfig *WebhookUpdateConfig) (config *WebhookConfigResponse, err error) {
 
+	// Marshall into JSON
 	var data []byte
 	data, err = json.Marshal(updateConfig)
 	if err != nil {
 		return
 	}
 
+	// Create the request
 	var resp string
 	// /api/v3/network/webhook/endpoint
 	resp, err = c.Request("webhook/endpoint", http.MethodPut, data)
@@ -65,8 +76,15 @@ func (c *Client) UpdateWebhookConfig(updateConfig *WebhookUpdateConfig) (config 
 		return
 	}
 
+	// Process the response
 	config = new(WebhookConfigResponse)
 	if err = json.Unmarshal([]byte(resp), config); err != nil {
+		return
+	}
+
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", config.ErrorMessage)
 		return
 	}
 	return
@@ -77,6 +95,7 @@ func (c *Client) UpdateWebhookConfig(updateConfig *WebhookUpdateConfig) (config 
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) GetMonitoredAddresses() (addresses MonitoredAddresses, err error) {
 
+	// Create the request
 	var resp string
 	// /api/v3/network/webhook/monitored_addrs
 	resp, err = c.Request("webhook/monitored_addrs", http.MethodGet, nil)
@@ -84,6 +103,17 @@ func (c *Client) GetMonitoredAddresses() (addresses MonitoredAddresses, err erro
 		return
 	}
 
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		var apiError APIInternalError
+		if err = json.Unmarshal([]byte(resp), &apiError); err != nil {
+			return
+		}
+		err = fmt.Errorf("error: %s", apiError.ErrorMessage)
+		return
+	}
+
+	// Process the response
 	addresses = *new(MonitoredAddresses)
 	if err = json.Unmarshal([]byte(resp), &addresses); err != nil {
 		return
@@ -96,12 +126,14 @@ func (c *Client) GetMonitoredAddresses() (addresses MonitoredAddresses, err erro
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) AddMonitoredAddresses(addAddresses *MonitoredAddresses) (addresses MonitoredAddresses, err error) {
 
+	// Marshall into JSON
 	var data []byte
 	data, err = json.Marshal(addAddresses)
 	if err != nil {
 		return
 	}
 
+	// Create the request
 	var resp string
 	// /api/v3/network/webhook/monitored_addrs
 	resp, err = c.Request("webhook/monitored_addrs", http.MethodPut, data)
@@ -109,6 +141,17 @@ func (c *Client) AddMonitoredAddresses(addAddresses *MonitoredAddresses) (addres
 		return
 	}
 
+	// Error from request?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		var apiError APIInternalError
+		if err = json.Unmarshal([]byte(resp), &apiError); err != nil {
+			return
+		}
+		err = fmt.Errorf("error: %s", apiError.ErrorMessage)
+		return
+	}
+
+	// Process the response
 	addresses = *new(MonitoredAddresses)
 	if err = json.Unmarshal([]byte(resp), &addresses); err != nil {
 		return
