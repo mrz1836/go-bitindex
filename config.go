@@ -58,6 +58,9 @@ const (
 
 	// DefaultUserAgent is the default user agent for all requests
 	DefaultUserAgent string = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36"
+
+	// apiKeyField is the field for the api key in all requests
+	apiKeyField string = "api_key"
 )
 
 // HTTP and Dialer connection variables
