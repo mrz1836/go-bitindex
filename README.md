@@ -89,12 +89,21 @@ Basic implementation:
 package main
 
 import (
-	"fmt"
+	"log"
+
 	"github.com/mrz1836/go-bitindex"
 )
 
 func main() {
 
+	// Create a new client
+	client, _ := bitindex.NewClient("your-secret-api-key")
+
+	// Get balance for an address
+	info, _ := client.AddressInfo("16ZqP5Tb22KJuvSAbjNkoiZs13mmRmexZA")
+
+	// What's the balance?
+	log.Println("address balance:", info.Balance)
 }
 ```
 
