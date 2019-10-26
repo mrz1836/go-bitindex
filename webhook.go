@@ -28,7 +28,7 @@ import (
 }
 */
 
-// GetWebhookConfig this endpoint retrieves the configuration for the existing webhook
+// GetWebhookConfig this endpoint retrieves the configuration for the existing webhook.
 //
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) GetWebhookConfig() (config *WebhookConfigResponse, err error) {
@@ -47,7 +47,7 @@ func (c *Client) GetWebhookConfig() (config *WebhookConfigResponse, err error) {
 	return
 }
 
-// UpdateWebhookConfig this endpoint updates the configuration for the existing webhook
+// UpdateWebhookConfig this endpoint updates the configuration for the existing webhook.
 //
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) UpdateWebhookConfig(updateConfig *WebhookUpdateConfig) (config *WebhookConfigResponse, err error) {
@@ -72,7 +72,7 @@ func (c *Client) UpdateWebhookConfig(updateConfig *WebhookUpdateConfig) (config 
 	return
 }
 
-// GetMonitoredAddresses this endpoint retrieves all the addresses being monitored by that API key
+// GetMonitoredAddresses this endpoint retrieves all the addresses being monitored by that API key.
 //
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) GetMonitoredAddresses() (addresses MonitoredAddresses, err error) {
@@ -91,7 +91,7 @@ func (c *Client) GetMonitoredAddresses() (addresses MonitoredAddresses, err erro
 	return
 }
 
-// AddMonitoredAddresses this endpoint takes new addresses and adds to monitor
+// AddMonitoredAddresses this endpoint takes new addresses and adds to monitor.
 //
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Webhook
 func (c *Client) AddMonitoredAddresses(addAddresses *MonitoredAddresses) (addresses MonitoredAddresses, err error) {

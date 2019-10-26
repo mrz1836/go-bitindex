@@ -44,12 +44,16 @@ type AddressInfo struct {
 type UnspentTransactions []UnspentTransaction
 
 // UnspentTransaction is a standard UTXO response
+// Also has some fields for xpub data (chain, num, path)
 type UnspentTransaction struct {
 	Address       string  `json:"address"`
 	Amount        float64 `json:"amount"`
+	Chain         int     `json:"chain"`
 	Confirmations int64   `json:"confirmations"`
 	Height        int64   `json:"height"`
+	Num           int     `json:"num"`
 	OutputIndex   int64   `json:"outputIndex"`
+	Path          string  `json:"path"`
 	Satoshis      int64   `json:"satoshis"`
 	Script        string  `json:"script"`
 	ScriptPubKey  string  `json:"scriptPubKey"`
@@ -268,4 +272,24 @@ type MonitoredAddresses []MonitoredAddress
 // MonitoredAddress is the address from get monitored addresses
 type MonitoredAddress struct {
 	Address string `json:"addr"`
+}
+
+// XpubAddresses is the list of next addresses
+type XpubAddresses []XPubAddress
+
+// XPubAddress is an address returned from xpub requests
+type XPubAddress struct {
+	Address string `json:"address"`
+	Chain   int    `json:"chain"`
+	Height  int64  `json:"height"`
+	Num     int    `json:"num"`
+	Path    string `json:"path"`
+	TxID    string `json:"txid"`
+}
+
+// XpubBalance is the balance returned for a xpub address
+type XpubBalance struct {
+	APIInternalError
+	Confirmed   int64 `json:"confirmed"`
+	UnConfirmed int64 `json:"unconfirmed"`
 }
