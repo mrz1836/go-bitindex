@@ -3,8 +3,14 @@ Package bitindex is the unofficial golang implementation for the bitindex API
 
 Example:
 
-// Create a client
-client, _ := bitindex.NewClient()
+// Create a new client
+client, _ := bitindex.NewClient("your-secret-api-key")
+
+// Get balance for an address
+info, _ := client.AddressInfo("16ZqP5Tb22KJuvSAbjNkoiZs13mmRmexZA")
+
+// What's the balance?
+log.Println("address balance:", info.Balance)
 */
 package bitindex
 
