@@ -46,10 +46,18 @@ You can view the generated [documentation here](https://godoc.org/github.com/mrz
     - [x] Chain Info
     - [x] Transaction
     - [x] Webhooks
-    - [ ] Xpub
+    - [x] Xpub
 
 ## Examples & Tests
 All unit tests and [examples](bitindex_test.go) run via [Travis CI](https://travis-ci.org/mrz1836/go-bitindex) and uses [Go version 1.13.x](https://golang.org/doc/go1.13). View the [deployment configuration file](.travis.yml).
+
+Examples & Tests by API section:
+- [address](address_test.go)
+- [block](block_test.go)
+- [chain](chain_test.go)
+- [transaction](transaction_test.go)
+- [webhook](webhook_test.go)
+- [xpub](xpub_test.go)
 
 Run all tests (including integration tests)
 ```bash
