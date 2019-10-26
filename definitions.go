@@ -4,8 +4,28 @@ package bitindex
 // for network in queries to be submitted: {"main", "test", "stn"}
 type NetworkType string
 
+// APIInternalError is for internal server errors
+type APIInternalError struct {
+	Errors       []string `json:"errors,omitempty"`
+	ErrorMessage string   `json:"message,omitempty"`
+	ErrorName    string   `json:"name,omitempty"`
+}
+
+// APIErrorResponse is from bitindex (broadcast related errors)
+type APIErrorResponse struct {
+	Errors  []string        `json:"errors,omitempty"`
+	Message APIErrorMessage `json:"message,omitempty"`
+}
+
+// APIErrorMessage is the nested error from APIErrorResponse
+type APIErrorMessage struct {
+	ErrorCode    int    `json:"code,omitempty"`
+	ErrorMessage string `json:"message,omitempty"`
+}
+
 // AddressInfo is the address info for a returned address request
 type AddressInfo struct {
+	APIInternalError
 	Address                    string   `json:"addrStr"`
 	Balance                    float64  `json:"balance"`
 	BalanceSatoshis            int64    `json:"balanceSat"`
@@ -52,6 +72,7 @@ type GetTransactionsRequest struct {
 
 // GetTransactionsResponse is the response from the POST request
 type GetTransactionsResponse struct {
+	APIInternalError
 	TotalItems int64         `json:"totalItems"`
 	From       int64         `json:"from"`
 	To         int64         `json:"to"`
@@ -60,6 +81,7 @@ type GetTransactionsResponse struct {
 
 // Transaction is returned in the GetTransactionsResponse
 type Transaction struct {
+	APIInternalError
 	BlockHash     string       `json:"blockhash"`
 	BlockHeight   int64        `json:"blockheight"`
 	BlockTime     int64        `json:"blocktime"`
@@ -76,6 +98,12 @@ type Transaction struct {
 	Version       int          `json:"version"`
 	Vin           []VinObject  `json:"vin"`
 	Vout          []VoutObject `json:"vout"`
+}
+
+// TransactionRaw is the response for the raw tx request
+type TransactionRaw struct {
+	APIInternalError
+	RawTx string `json:"rawtx"`
 }
 
 // VinObject is the vin data
@@ -122,4 +150,10 @@ type GetUnspentTransactionsRequest struct {
 	Address   string   `json:"addrs"` // single address or addr1,addr2,addr3
 	Addresses []string `json:"-"`     // (used for multiple)
 	Sort      string   `json:"sort"`  // Format is 'field:asc' such as 'value:desc' to sort by value descending
+}
+
+// SendTransactionResponse is the response for the request
+type SendTransactionResponse struct {
+	APIErrorResponse
+	TxID string `json:"txid"`
 }

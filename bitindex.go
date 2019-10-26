@@ -66,7 +66,7 @@ type LastRequest struct {
 }
 
 // NewClient creates a new client to submit queries with.
-// Parameters values are set to the defaults defined by WhatsOnChain.
+// Parameters values are set to the defaults defined by the API documentation.
 //
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Authentication
 func NewClient(apiKey string) (c *Client, err error) {
@@ -123,7 +123,7 @@ func (c *Client) Request(endpoint string, method string, payload []byte) (respon
 
 	// Switch on POST vs GET
 	switch method {
-	case "POST":
+	case http.MethodPost:
 		{
 			bodyReader = bytes.NewBuffer(payload)
 		}
@@ -144,7 +144,7 @@ func (c *Client) Request(endpoint string, method string, payload []byte) (respon
 	request.Header.Set("api_key", c.Parameters.APIKey)
 
 	// Set the content type on POST
-	if method == "POST" {
+	if method == http.MethodPost {
 		request.Header.Set("Content-Type", "application/json")
 	}
 
@@ -184,7 +184,7 @@ func (c *Client) AddressInfo(address string) (addressInfo *AddressInfo, err erro
 
 	var resp string
 	// /api/v3/network/addr/address
-	resp, err = c.Request("addr/"+address, "GET", nil)
+	resp, err = c.Request("addr/"+address, http.MethodGet, nil)
 	if err != nil {
 		return
 	}
@@ -203,8 +203,14 @@ func (c *Client) AddressUnspentTransactions(address string) (transactions Unspen
 
 	var resp string
 	// /api/v3/network/addr/address/utxo
-	resp, err = c.Request("addr/"+address+"/utxo", "GET", nil)
+	resp, err = c.Request("addr/"+address+"/utxo", http.MethodGet, nil)
 	if err != nil {
+		return
+	}
+
+	// Error?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", resp)
 		return
 	}
 
@@ -218,7 +224,7 @@ func (c *Client) AddressUnspentTransactions(address string) (transactions Unspen
 // GetTransactions this endpoint retrieves list of transactions.
 //
 // Form more information: https://www.bitindex.network/developers/api-documentation-v3.html#Address
-func (c *Client) GetTransactions(transactionRequest *GetTransactionsRequest) (response GetTransactionsResponse, err error) {
+func (c *Client) GetTransactions(transactionRequest *GetTransactionsRequest) (response *GetTransactionsResponse, err error) {
 
 	// Got multiple addresses?
 	if len(transactionRequest.Addresses) > 0 {
@@ -233,12 +239,12 @@ func (c *Client) GetTransactions(transactionRequest *GetTransactionsRequest) (re
 
 	var resp string
 	// /api/v3/network/addrs/txs
-	resp, err = c.Request("addrs/txs", "POST", data)
+	resp, err = c.Request("addrs/txs", http.MethodPost, data)
 	if err != nil {
 		return
 	}
 
-	response = *new(GetTransactionsResponse)
+	response = new(GetTransactionsResponse)
 	if err = json.Unmarshal([]byte(resp), &response); err != nil {
 		return
 	}
@@ -269,13 +275,76 @@ func (c *Client) GetUnspentTransactions(transactionRequest *GetUnspentTransactio
 
 	var resp string
 	// /api/v3/network/addrs/utxo
-	resp, err = c.Request(endpoint, "POST", data)
+	resp, err = c.Request(endpoint, http.MethodPost, data)
 	if err != nil {
+		return
+	}
+
+	// Error?
+	if c.LastRequest.StatusCode != http.StatusOK {
+		err = fmt.Errorf("error: %s", resp)
 		return
 	}
 
 	transactions = *new(UnspentTransactions)
 	if err = json.Unmarshal([]byte(resp), &transactions); err != nil {
+		return
+	}
+	return
+}
+
+// GetTransaction this endpoint retrieves the transaction info.
+//
+// Form more information: https://www.bitindex.network/developers/api-documentation-v3.html#Transactions
+func (c *Client) GetTransaction(txID string) (transaction *Transaction, err error) {
+
+	var resp string
+	// /api/v3/network/tx/txid
+	resp, err = c.Request("tx/"+txID, http.MethodGet, nil)
+	if err != nil {
+		return
+	}
+
+	transaction = new(Transaction)
+	if err = json.Unmarshal([]byte(resp), transaction); err != nil {
+		return
+	}
+	return
+}
+
+// GetTransactionRaw this endpoint retrieves the transaction in raw format.
+//
+// Form more information: https://www.bitindex.network/developers/api-documentation-v3.html#Transactions
+func (c *Client) GetTransactionRaw(txID string) (rawTx *TransactionRaw, err error) {
+
+	var resp string
+	// /api/v3/network/rawtx/txid
+	resp, err = c.Request("rawtx/"+txID, http.MethodGet, nil)
+	if err != nil {
+		return
+	}
+
+	rawTx = new(TransactionRaw)
+	if err = json.Unmarshal([]byte(resp), rawTx); err != nil {
+		return
+	}
+	return
+}
+
+// SendTransaction this endpoint broadcasts a raw transaction to the network.
+//
+// Form more information: https://www.bitindex.network/developers/api-documentation-v3.html#Transactions
+func (c *Client) SendTransaction(rawTx string) (txID *SendTransactionResponse, err error) {
+
+	var resp string
+	// /api/v3/network/tx/send
+	resp, err = c.Request("tx/send", http.MethodPost, []byte(fmt.Sprintf(`{"rawtx":"%s"}`, rawTx)))
+	if err != nil {
+		return
+	}
+
+	txID = new(SendTransactionResponse)
+	if err = json.Unmarshal([]byte(resp), txID); err != nil {
 		return
 	}
 	return

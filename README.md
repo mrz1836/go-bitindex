@@ -42,7 +42,7 @@ You can view the generated [documentation here](https://godoc.org/github.com/mrz
 - Using [heimdall http client](https://github.com/gojek/heimdall) with exponential backoff & more
 - Current coverage for the [bitindex.com](https://developers.bitindex.com/) API
     - [x] Address
-    - [ ] Transaction
+    - [x] Transaction
     - [ ] Chain Info
     - [ ] Block
     - [ ] Xpub
