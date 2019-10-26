@@ -1,10 +1,10 @@
 # go-bitindex
 **go-bitindex** is the unofficial golang implementation for the [bitindex API](https://www.bitindex.network/developers/api-documentation-v3.html)
 
-[![Build Status](https://travis-ci.com/mrz1836/go-bitindex.svg?branch=master&v=2)](https://travis-ci.com/mrz1836/go-bitindex)
-[![Report](https://goreportcard.com/badge/github.com/mrz1836/go-bitindex?style=flat&v=2)](https://goreportcard.com/report/github.com/mrz1836/go-bitindex)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f9815e59758743b9adca25c11558ab1c)](https://www.codacy.com/app/mrz1818/go-bitindex?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrz1836/go-bitindex&amp;utm_campaign=Badge_Grade)
-[![Release](https://img.shields.io/github/release-pre/mrz1836/go-bitindex.svg?style=flat&v=1)](https://github.com/mrz1836/go-bitindex/releases)
+[![Build Status](https://travis-ci.com/mrz1836/go-bitindex.svg?branch=master&v=1)](https://travis-ci.com/mrz1836/go-bitindex)
+[![Report](https://goreportcard.com/badge/github.com/mrz1836/go-bitindex?style=flat&v=1)](https://goreportcard.com/report/github.com/mrz1836/go-bitindex)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dde6d46426bd4c12be65916da8cf04d2)](https://www.codacy.com/app/mrz1818/go-bitindex?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrz1836/go-bitindex&amp;utm_campaign=Badge_Grade)
+[![Release](https://img.shields.io/github/release-pre/mrz1836/go-bitindex.svg?style=flat&v=2)](https://github.com/mrz1836/go-bitindex/releases)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat)](https://github.com/RichardLitt/standard-readme)
 [![GoDoc](https://godoc.org/github.com/mrz1836/go-bitindex?status.svg&style=flat)](https://godoc.org/github.com/mrz1836/go-bitindex)
 
@@ -34,6 +34,8 @@ $ dep ensure -update -v
 
 ## Documentation
 You can view the generated [documentation here](https://godoc.org/github.com/mrz1836/go-bitindex).
+
+You can also view the [bitindex api](https://www.bitindex.network/developers/api-documentation-v3.html) documentation.
 
 ### Features
 - Client is completely configurable
@@ -123,6 +125,8 @@ Support the development of this project 🙏
 
 [@Attila](https://github.com/attilaaf) & [BitIndex](https://www.bitindex.network/) for their hard work on the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
 
+Looking for a Javascript version? Check out the [BitIndex JS SDK](https://github.com/BitIndex/bitindex-sdk)
+
 ## License
 
-![License](https://img.shields.io/github/license/mrz1836/go-bitindex.svg?style=flat)
+![License](https://img.shields.io/github/license/mrz1836/go-bitindex.svg?style=flat&v=1)
