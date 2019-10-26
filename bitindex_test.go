@@ -12,6 +12,10 @@ var (
 
 // TestNewClient test new client
 func TestNewClient(t *testing.T) {
+	// Not testing against bitindex
+	if testing.Short() && len(testAPIKey) == 0 {
+		testAPIKey = "dummy-key-not-testing"
+	}
 	client, err := NewClient(testAPIKey)
 	if err != nil {
 		t.Fatal(err)
