@@ -112,7 +112,7 @@ Support the development of this project 🙏
 
 #### Credits
 
-[BitIndex](https://www.bitindex.network/) for their hard work on the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
+[@Attila](https://github.com/attilaaf) & [BitIndex](https://www.bitindex.network/) for their hard work on the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
 
 ## License
 
