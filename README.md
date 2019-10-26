@@ -1,5 +1,5 @@
 # go-bitindex
-**go-bitindex** is the unofficial golang implementation for the [bitindex API](https://www.bitindex.network/developers/api-documentation-v3.html)
+**go-bitindex** is the unofficial golang implementation for the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
 
 [![Build Status](https://travis-ci.com/mrz1836/go-bitindex.svg?branch=master&v=1)](https://travis-ci.com/mrz1836/go-bitindex)
 [![Report](https://goreportcard.com/badge/github.com/mrz1836/go-bitindex?style=flat&v=1)](https://goreportcard.com/report/github.com/mrz1836/go-bitindex)
@@ -35,14 +35,14 @@ $ dep ensure -update -v
 ## Documentation
 You can view the generated [documentation here](https://godoc.org/github.com/mrz1836/go-bitindex).
 
-You can also view the [bitindex api](https://www.bitindex.network/developers/api-documentation-v3.html) documentation.
+You can also view the [BitIndex api](https://www.bitindex.network/developers/api-documentation-v3.html) documentation.
 
 ### Features
 - Client is completely configurable
 - Customize User Agent per request
 - Customize the network per request (`main`, `test` or `stn`)
 - Using [heimdall http client](https://github.com/gojek/heimdall) with exponential backoff & more
-- Current coverage for the [bitindex.com](https://developers.bitindex.com/) API
+- Current coverage for the [BitIndex](https://developers.bitindex.com/) API
     - [x] Address
     - [x] Block
     - [x] Chain Info
