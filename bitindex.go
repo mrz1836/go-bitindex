@@ -16,6 +16,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gojek/heimdall"
 	"github.com/gojek/heimdall/httpclient"
@@ -195,7 +196,7 @@ func (c *Client) AddressInfo(address string) (addressInfo *AddressInfo, err erro
 	return
 }
 
-// AddressUnspentTransactions this endpoint retrieves ordered list of UTXOs.
+// AddressUnspentTransactions this endpoint retrieves list of UTXOs.
 //
 // Form more information: https://www.bitindex.network/developers/api-documentation-v3.html#Address
 func (c *Client) AddressUnspentTransactions(address string) (transactions UnspentTransactions, err error) {
@@ -214,10 +215,15 @@ func (c *Client) AddressUnspentTransactions(address string) (transactions Unspen
 	return
 }
 
-// GetTransactions this endpoint retrieves ordered list of transactions.
+// GetTransactions this endpoint retrieves list of transactions.
 //
 // Form more information: https://www.bitindex.network/developers/api-documentation-v3.html#Address
 func (c *Client) GetTransactions(transactionRequest *GetTransactionsRequest) (response GetTransactionsResponse, err error) {
+
+	// Got multiple addresses?
+	if len(transactionRequest.Addresses) > 0 {
+		transactionRequest.Address = strings.Join(transactionRequest.Addresses, ",")
+	}
 
 	var data []byte
 	data, err = json.Marshal(transactionRequest)
@@ -234,6 +240,36 @@ func (c *Client) GetTransactions(transactionRequest *GetTransactionsRequest) (re
 
 	response = *new(GetTransactionsResponse)
 	if err = json.Unmarshal([]byte(resp), &response); err != nil {
+		return
+	}
+	return
+}
+
+// GetUnspentTransactions this endpoint retrieves list of unspent transactions.
+//
+// Form more information: https://www.bitindex.network/developers/api-documentation-v3.html#Address
+func (c *Client) GetUnspentTransactions(transactionRequest *GetUnspentTransactionsRequest) (transactions UnspentTransactions, err error) {
+
+	// Got multiple addresses?
+	if len(transactionRequest.Addresses) > 0 {
+		transactionRequest.Address = strings.Join(transactionRequest.Addresses, ",")
+	}
+
+	var data []byte
+	data, err = json.Marshal(transactionRequest)
+	if err != nil {
+		return
+	}
+
+	var resp string
+	// /api/v3/network/addrs/utxo
+	resp, err = c.Request("addrs/utxo", "POST", data)
+	if err != nil {
+		return
+	}
+
+	transactions = *new(UnspentTransactions)
+	if err = json.Unmarshal([]byte(resp), &transactions); err != nil {
 		return
 	}
 	return

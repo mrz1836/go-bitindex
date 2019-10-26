@@ -41,7 +41,7 @@ You can view the generated [documentation here](https://godoc.org/github.com/mrz
 - Customize the network per request (main, test or stn)
 - Using [heimdall http client](https://github.com/gojek/heimdall) with exponential backoff & more
 - Current coverage for the [bitindex.com](https://developers.bitindex.com/) API
-    - [ ] Address
+    - [x] Address
     - [ ] Transaction
     - [ ] Chain Info
     - [ ] Block

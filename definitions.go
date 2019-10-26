@@ -40,13 +40,14 @@ type UnspentTransaction struct {
 
 // GetTransactionsRequest is for making a POST to get transactions
 type GetTransactionsRequest struct {
-	Address        string `json:"addrs"` // addr1,addr2,addr3
-	AfterBlockHash string `json:"afterBlockHash,omitempty"`
-	AfterHeight    string `json:"afterHeight,omitempty"`
-	FromIndex      int64  `json:"fromIndex,omitempty"`
-	IncludeAsm     bool   `json:"includeAsm"`
-	IncludeHex     bool   `json:"includeHex"`
-	ToIndex        int64  `json:"toIndex,omitempty"`
+	Address        string   `json:"addrs"` // single address or addr1,addr2,addr3
+	Addresses      []string `json:"-"`     // (used for multiple)
+	AfterBlockHash string   `json:"afterBlockHash,omitempty"`
+	AfterHeight    string   `json:"afterHeight,omitempty"`
+	FromIndex      int64    `json:"fromIndex,omitempty"`
+	IncludeAsm     bool     `json:"includeAsm"`
+	IncludeHex     bool     `json:"includeHex"`
+	ToIndex        int64    `json:"toIndex,omitempty"`
 }
 
 // GetTransactionsResponse is the response from the POST request
@@ -114,4 +115,10 @@ type ScriptPubKeyObject struct {
 	Hex                string   `json:"hex"`
 	RequiredSignatures int      `json:"reqSigs"`
 	Type               string   `json:"type"`
+}
+
+// GetUnspentTransactionsRequest is for making the GetUnspentTransactions request
+type GetUnspentTransactionsRequest struct {
+	Address   string   `json:"addrs"` // single address or addr1,addr2,addr3
+	Addresses []string `json:"-"`     // (used for multiple)
 }
