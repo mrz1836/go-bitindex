@@ -4,7 +4,7 @@ package bitindex
 // for network in queries to be submitted: {"main", "test", "stn"}
 type NetworkType string
 
-// APIInternalError is for internal server errors
+// APIInternalError is for internal server errors (most requests)
 type APIInternalError struct {
 	Errors       []string `json:"errors,omitempty"`
 	ErrorMessage string   `json:"message,omitempty"`
@@ -13,12 +13,12 @@ type APIInternalError struct {
 
 // APIErrorResponse is from bitindex (broadcast related errors)
 type APIErrorResponse struct {
-	Errors  []string        `json:"errors,omitempty"`
-	Message APIErrorMessage `json:"message,omitempty"`
+	Errors  []string           `json:"errors,omitempty"`
+	Message nestedErrorMessage `json:"message,omitempty"`
 }
 
-// APIErrorMessage is the nested error from APIErrorResponse
-type APIErrorMessage struct {
+// nestedErrorMessage is the nested error from APIErrorResponse
+type nestedErrorMessage struct {
 	ErrorCode    int    `json:"code,omitempty"`
 	ErrorMessage string `json:"message,omitempty"`
 }
@@ -96,8 +96,8 @@ type Transaction struct {
 	ValueIn       float64      `json:"valueIn"`
 	ValueOut      float64      `json:"valueOut"`
 	Version       int          `json:"version"`
-	Vin           []VinObject  `json:"vin"`
-	Vout          []VoutObject `json:"vout"`
+	Vin           []vinObject  `json:"vin"`
+	Vout          []voutObject `json:"vout"`
 }
 
 // TransactionRaw is the response for the raw tx request
@@ -106,12 +106,12 @@ type TransactionRaw struct {
 	RawTx string `json:"rawtx"`
 }
 
-// VinObject is the vin data
-type VinObject struct {
+// vinObject is the vin data
+type vinObject struct {
 	Address       string          `json:"address"`
 	AddressAddr   string          `json:"addr"`
 	N             int             `json:"n"`
-	ScriptSig     ScriptSigObject `json:"scriptSig"`
+	ScriptSig     scriptSigObject `json:"scriptSig"`
 	Sequence      int64           `json:"sequence"`
 	TxID          string          `json:"txid"`
 	Value         float64         `json:"value"`
@@ -119,16 +119,16 @@ type VinObject struct {
 	Vout          int             `json:"vout"`
 }
 
-// ScriptSigObject is the script signature data
-type ScriptSigObject struct {
+// scriptSigObject is the script signature data
+type scriptSigObject struct {
 	Asm string `json:"asm"`
 	Hex string `json:"hex"`
 }
 
-// VoutObject is the vout data
-type VoutObject struct {
+// voutObject is the vout data
+type voutObject struct {
 	N             int                `json:"n"`
-	ScriptPubKey  ScriptPubKeyObject `json:"scriptPubKey"`
+	ScriptPubKey  scriptPubKeyObject `json:"scriptPubKey"`
 	SpentHeight   int64              `json:"spentHeight"`
 	SpentIndex    int64              `json:"spentIndex"`
 	SpentTxID     string             `json:"spentTxId"`
@@ -136,8 +136,8 @@ type VoutObject struct {
 	ValueSatoshis int64              `json:"valueSat"`
 }
 
-// ScriptPubKeyObject is the script pubkey data
-type ScriptPubKeyObject struct {
+// scriptPubKeyObject is the script pubkey data
+type scriptPubKeyObject struct {
 	Addresses          []string `json:"addresses"`
 	Asm                string   `json:"asm"`
 	Hex                string   `json:"hex"`
@@ -156,4 +156,116 @@ type GetUnspentTransactionsRequest struct {
 type SendTransactionResponse struct {
 	APIErrorResponse
 	TxID string `json:"txid"`
+}
+
+// ChainInfoResponse response struct for chain info request
+type ChainInfoResponse struct {
+	Info chainInfo `json:"info"`
+}
+
+// chainInfo is for the chain info request response data
+type chainInfo struct {
+	Blocks          int64   `json:"blocks"`
+	Connections     int64   `json:"connections"`
+	Difficulty      float64 `json:"difficulty"`
+	Errors          string  `json:"errors"`
+	Network         string  `json:"network"`
+	ProtocolVersion int64   `json:"protocolversion"`
+	Proxy           string  `json:"proxy"`
+	RelayFee        float64 `json:"relayfee"`
+	TestNet         bool    `json:"testnet"`
+	TimeOffset      int64   `json:"timeoffset"`
+	Version         int64   `json:"version"`
+}
+
+// ChainDifficultyResponse response struct for chain difficulty request
+type ChainDifficultyResponse struct {
+	Difficulty float64 `json:"difficulty"`
+}
+
+// ChainBestBlockHashResponse response struct for best block hash request
+type ChainBestBlockHashResponse struct {
+	BestBlockHash string `json:"bestblockhash"`
+}
+
+// ChainLastBlockHashResponse response struct for last block hash request
+type ChainLastBlockHashResponse struct {
+	LastBlockHash string `json:"lastblockhash"`
+	SyncTipHash   string `json:"syncTipHash"`
+}
+
+// BlockHashByHeightResponse response struct for block hash by height request
+type BlockHashByHeightResponse struct {
+	APIInternalError
+	BlockHash string `json:"blockHash"`
+}
+
+// BlockHeaderResponse is the block header response
+type BlockHeaderResponse struct {
+	APIInternalError
+	Bits              string  `json:"bits"`
+	ChainWork         string  `json:"chainwork"`
+	Confirmations     int64   `json:"confirmations"`
+	Difficulty        float64 `json:"difficulty"`
+	Hash              string  `json:"hash"`
+	Height            int64   `json:"height"`
+	MedianTime        int64   `json:"mediantime"`
+	MerkleRoot        string  `json:"merkleroot"`
+	NextBlockHash     string  `json:"nextblockhash"`
+	Nonce             int64   `json:"nonce"`
+	PreviousBlockHash string  `json:"previousblockhash"`
+	Time              int64   `json:"time"`
+	Version           int     `json:"version"`
+	VersionHex        string  `json:"versionHex"`
+}
+
+// BlockResponse is the block response
+type BlockResponse struct {
+	APIInternalError
+	Bits              string   `json:"bits"`
+	ChainWork         string   `json:"chainwork"`
+	Confirmations     int64    `json:"confirmations"`
+	Difficulty        float64  `json:"difficulty"`
+	Hash              string   `json:"hash"`
+	Height            int64    `json:"height"`
+	MedianTime        int64    `json:"mediantime"`
+	MerkleRoot        string   `json:"merkleroot"`
+	NextBlockHash     string   `json:"nextblockhash"`
+	Nonce             int64    `json:"nonce"`
+	PreviousBlockHash string   `json:"previousblockhash"`
+	Size              int64    `json:"size"`
+	Time              int64    `json:"time"`
+	Tx                []string `json:"tx"`
+	Version           int      `json:"version"`
+	VersionHex        string   `json:"versionHex"`
+}
+
+// BlockRawResponse response struct for raw block request
+type BlockRawResponse struct {
+	APIInternalError
+	RawBlock string `json:"rawblock"`
+}
+
+// WebhookConfigResponse is the response from get config
+type WebhookConfigResponse struct {
+	APIInternalError
+	Enabled bool   `json:"enabled"`
+	ID      string `json:"id"`
+	Secret  string `json:"secret"`
+	URL     string `json:"url"`
+}
+
+// WebhookUpdateConfig is for updating a webhook config
+type WebhookUpdateConfig struct {
+	Enabled bool   `json:"enabled"`
+	Secret  string `json:"secret,omitempty"`
+	URL     string `json:"url,omitempty"`
+}
+
+// MonitoredAddresses is the response from get monitored addresses
+type MonitoredAddresses []MonitoredAddress
+
+// MonitoredAddress is the address from get monitored addresses
+type MonitoredAddress struct {
+	Address string `json:"addr"`
 }
