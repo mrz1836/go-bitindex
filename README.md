@@ -38,11 +38,12 @@ You can view the generated [documentation here](https://godoc.org/github.com/mrz
 You can also view the [BitIndex api](https://www.bitindex.network/developers/api-documentation-v3.html) documentation.
 
 ### Features
+- Supports >= V3 API requests
 - Client is completely configurable
 - Customize User Agent per request
 - Customize the network per request (`main`, `test` or `stn`)
 - Using [heimdall http client](https://github.com/gojek/heimdall) with exponential backoff & more
-- Current coverage for the [BitIndex](https://developers.bitindex.com/) API
+- Current (V3) coverage for the [BitIndex](https://developers.bitindex.com/) API
     - [x] Address
     - [x] Block
     - [x] Chain Info
