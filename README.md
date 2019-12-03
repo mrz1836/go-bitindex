@@ -21,15 +21,9 @@
 
 ## Installation
 
-**go-bitindex** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy) and [dep](https://github.com/golang/dep).
+**go-bitindex** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
 ```bash
 $ go get -u github.com/mrz1836/go-bitindex
-```
-
-Updating dependencies in **go-bitindex**:
-```bash
-$ cd ../go-bitindex
-$ dep ensure -update -v
 ```
 
 ## Documentation
