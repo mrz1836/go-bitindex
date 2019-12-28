@@ -10,7 +10,7 @@ func TestClient_AddressInfo(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -41,7 +41,7 @@ func TestClient_AddressUnspentTransactions(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -68,7 +68,7 @@ func TestClient_GetTransactions(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -105,7 +105,7 @@ func TestClient_GetTransactionsMultiple(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -142,7 +142,7 @@ func TestClient_GetUnspentTransactions(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

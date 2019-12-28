@@ -17,7 +17,7 @@ func main() {
 	yourAPIKey := os.Getenv("BITINDEX_API_KEY")
 
 	// Create a new client
-	client, err := bitindex.NewClient(yourAPIKey)
+	client, err := bitindex.NewClient(yourAPIKey, bitindex.NetworkMain, nil)
 	if err != nil {
 		log.Fatal(err.Error())
 	}

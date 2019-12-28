@@ -33,8 +33,7 @@ You can also view the [BitIndex api](https://www.bitindex.network/developers/api
 
 ### Features
 - Supports >= V3 API requests
-- Client is completely configurable
-- Customize User Agent per request
+- [Client](client.go) is completely configurable
 - Customize the network per request (`main`, `test` or `stn`)
 - Using [heimdall http client](https://github.com/gojek/heimdall) with exponential backoff & more
 - Current (V3) coverage for the [BitIndex](https://developers.bitindex.com/) API
@@ -94,7 +93,7 @@ import (
 func main() {
 
 	// Create a new client
-	client, _ := bitindex.NewClient("your-secret-api-key")
+	client, _ := bitindex.NewClient("your-secret-api-key", bitindex.NetworkMain, nil))
 
 	// Get balance for an address
 	info, _ := client.AddressInfo("16ZqP5Tb22KJuvSAbjNkoiZs13mmRmexZA")

@@ -10,7 +10,7 @@ func TestClient_GetWebhookConfig(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -34,7 +34,7 @@ func TestClient_GetMonitoredAddresses(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -58,7 +58,7 @@ func TestClient_UpdateWebhookConfig(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -92,7 +92,7 @@ func TestClient_AddMonitoredAddresses(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

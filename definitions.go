@@ -4,6 +4,20 @@ package bitindex
 // for network in queries to be submitted: {"main", "test", "stn"}
 type NetworkType string
 
+const (
+	// apiKeyField is the field for the api key in all requests
+	apiKeyField string = "api_key"
+
+	// NetworkMain is for main-net
+	NetworkMain NetworkType = "main"
+
+	// NetworkTest is for test-net
+	NetworkTest NetworkType = "test"
+
+	//NetworkStn is for the stn-net
+	NetworkStn NetworkType = "stn"
+)
+
 // APIInternalError is for internal server errors (most requests)
 type APIInternalError struct {
 	Errors       []string `json:"errors,omitempty"`

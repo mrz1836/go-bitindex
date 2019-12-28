@@ -10,7 +10,7 @@ func TestClient_GetXpubNextAddress(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -46,7 +46,7 @@ func TestClient_GetXpubAddresses(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -86,7 +86,7 @@ func TestClient_GetXpubBalance(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -114,7 +114,7 @@ func TestClient_GetXpubUnspentTransactions(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -145,7 +145,7 @@ func TestClient_GetXpubTransactions(t *testing.T) {
 	}
 
 	// Create a new client object to handle your queries (supply an API Key)
-	client, err := NewClient(testAPIKey)
+	client, err := NewClient(testAPIKey, NetworkMain, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
