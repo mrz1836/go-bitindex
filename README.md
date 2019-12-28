@@ -93,7 +93,7 @@ import (
 func main() {
 
 	// Create a new client
-	client, _ := bitindex.NewClient("your-secret-api-key", bitindex.NetworkMain, nil))
+	client, _ := bitindex.NewClient("your-secret-api-key", bitindex.NetworkMain, nil)
 
 	// Get balance for an address
 	info, _ := client.AddressInfo("16ZqP5Tb22KJuvSAbjNkoiZs13mmRmexZA")
