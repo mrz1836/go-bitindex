@@ -1,6 +1,7 @@
 # go-bitindex
 **go-bitindex** is the unofficial golang implementation for the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
 
+[![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/go-bitindex)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/go-bitindex.svg?branch=master&v=1)](https://travis-ci.com/mrz1836/go-bitindex)
 [![Report](https://goreportcard.com/badge/github.com/mrz1836/go-bitindex?style=flat&v=1)](https://goreportcard.com/report/github.com/mrz1836/go-bitindex)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dde6d46426bd4c12be65916da8cf04d2)](https://www.codacy.com/app/mrz1818/go-bitindex?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrz1836/go-bitindex&amp;utm_campaign=Badge_Grade)
