@@ -106,7 +106,9 @@ func main() {
 
 ## Maintainers
 
-[@MrZ](https://github.com/mrz1836)
+| [<img src="https://github.com/mrz1836.png" height="50" alt="MrZ" />](https://github.com/mrz1836) |
+|:---:|
+| [MrZ](https://github.com/mrz1836) |
 
 ## Contributing
 
@@ -121,6 +123,8 @@ Support the development of this project 🙏
 [@Attila](https://github.com/attilaaf) & [BitIndex](https://www.bitindex.network/) for their hard work on the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
 
 Looking for a Javascript version? Check out the [BitIndex JS SDK](https://github.com/BitIndex/bitindex-sdk)
+
+Looking for Matter Cloud? Checkout the [go-mattercloud](https://github.com/mrz1836/go-mattercloud) package.
 
 ## License
 
