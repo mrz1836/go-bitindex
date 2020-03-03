@@ -68,7 +68,7 @@ func TestClient_UpdateWebhookConfig(t *testing.T) {
 	req := new(WebhookUpdateConfig)
 	req.Secret = "Top-Secret-New-Key2"
 	req.Enabled = false
-	//req.URL = "http://example-update-me-to-your.com/path/callback2"
+	// req.URL = "http://example-update-me-to-your.com/path/callback2"
 
 	config, err = client.UpdateWebhookConfig(req)
 	if err != nil {

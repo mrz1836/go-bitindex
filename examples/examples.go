@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// Set test net?
-	//client.Parameters.Network = bitindex.NetworkTest
+	// client.Parameters.Network = bitindex.NetworkTest
 
 	// Get balance for an address
 	var info *bitindex.AddressInfo

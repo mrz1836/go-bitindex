@@ -14,7 +14,7 @@ const (
 	// NetworkTest is for test-net
 	NetworkTest NetworkType = "test"
 
-	//NetworkStn is for the stn-net
+	// NetworkStn is for the stn-net
 	NetworkStn NetworkType = "stn"
 )
 

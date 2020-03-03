@@ -45,7 +45,7 @@ func (c *Client) GetXpubNextAddress(xPub string, reserveTimeSeconds int) (addres
 	return
 }
 
-//https://api.bitindex.network/api/v3/network/xpub/xpub/addrs?offset=&limit=1000&order=desc&address=
+// https://api.bitindex.network/api/v3/network/xpub/xpub/addrs?offset=&limit=1000&order=desc&address=
 
 // GetXpubAddresses this endpoint will return addresses for an xpub given the parameters.
 //
