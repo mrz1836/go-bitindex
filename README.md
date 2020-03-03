@@ -46,7 +46,7 @@ You can also view the [BitIndex api](https://www.bitindex.network/developers/api
     - [x] Xpub
 
 ## Examples & Tests
-All unit tests and [examples](bitindex_test.go) run via [Travis CI](https://travis-ci.org/mrz1836/go-bitindex) and uses [Go version 1.13.x](https://golang.org/doc/go1.13). View the [deployment configuration file](.travis.yml).
+All unit tests and [examples](bitindex_test.go) run via [Travis CI](https://travis-ci.org/mrz1836/go-bitindex) and uses [Go version 1.14.x](https://golang.org/doc/go1.14). View the [deployment configuration file](.travis.yml).
 
 Examples & Tests by API section:
 - [address](address_test.go)
