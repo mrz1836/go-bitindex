@@ -2,6 +2,7 @@ package bitindex
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"testing"
 	"time"
@@ -29,7 +30,8 @@ func TestNewClient(t *testing.T) {
 
 // ExampleNewClient example using NewClient()
 func ExampleNewClient() {
-	client, _ := NewClient(testAPIKey, NetworkMain, nil)
+	client, _ := NewClient("dummy-key", NetworkMain, nil)
+	log.Println(testAPIKey, client)
 	fmt.Println(client.Parameters.Network)
 	// Output:main
 }
