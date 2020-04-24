@@ -4,10 +4,8 @@
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/go-bitindex)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/go-bitindex.svg?branch=master&v=1)](https://travis-ci.com/mrz1836/go-bitindex)
 [![Report](https://goreportcard.com/badge/github.com/mrz1836/go-bitindex?style=flat&v=1)](https://goreportcard.com/report/github.com/mrz1836/go-bitindex)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dde6d46426bd4c12be65916da8cf04d2)](https://www.codacy.com/app/mrz1818/go-bitindex?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrz1836/go-bitindex&amp;utm_campaign=Badge_Grade)
 [![Release](https://img.shields.io/github/release-pre/mrz1836/go-bitindex.svg?style=flat&v=2)](https://github.com/mrz1836/go-bitindex/releases)
-[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat)](https://github.com/RichardLitt/standard-readme)
-[![GoDoc](https://godoc.org/github.com/mrz1836/go-bitindex?status.svg&style=flat)](https://godoc.org/github.com/mrz1836/go-bitindex)
+[![GoDoc](https://godoc.org/github.com/mrz1836/go-bitindex?status.svg&style=flat)](https://pkg.go.dev/github.com/mrz1836/go-bitindex)
 
 ## Table of Contents
 - [Installation](#installation)
@@ -28,7 +26,7 @@ $ go get -u github.com/mrz1836/go-bitindex
 ```
 
 ## Documentation
-You can view the generated [documentation here](https://godoc.org/github.com/mrz1836/go-bitindex).
+You can view the generated [documentation here](https://pkg.go.dev/github.com/mrz1836/go-bitindex).
 
 You can also view the [BitIndex api](https://www.bitindex.network/developers/api-documentation-v3.html) documentation.
 
@@ -45,6 +43,48 @@ You can also view the [BitIndex api](https://www.bitindex.network/developers/api
     - [x] Webhooks
     - [x] Xpub
 
+<details>
+<summary><strong><code>Library Deployment</code></strong></summary>
+
+[goreleaser](https://github.com/goreleaser/goreleaser) for easy binary or library deployment to Github and can be installed via: `brew install goreleaser`.
+
+The [.goreleaser.yml](.goreleaser.yml) file is used to configure [goreleaser](https://github.com/goreleaser/goreleaser).
+
+Use `make release-snap` to create a snapshot version of the release, and finally `make release` to ship to production.
+</details>
+
+<details>
+<summary><strong><code>Makefile Commands</code></strong></summary>
+
+View all `makefile` commands
+```bash
+$ make help
+```
+
+List of all current commands:
+```text
+all                            Runs test, install, clean, docs
+bench                          Run all benchmarks in the Go application
+clean                          Remove previous builds and any test cache data
+clean-mods                     Remove all the Go mod cache
+coverage                       Shows the test coverage
+godocs                         Sync the latest tag with GoDocs
+help                           Show all make commands available
+lint                           Run the Go lint application
+release                        Full production release (creates release in Github)
+release-test                   Full production test release (everything except deploy)
+release-snap                   Test the full release (build binaries)
+tag                            Generate a new tag and push (IE: make tag version=0.0.0)
+tag-remove                     Remove a tag if found (IE: make tag-remove version=0.0.0)
+tag-update                     Update an existing tag to current commit (IE: make tag-update version=0.0.0)
+test                           Runs vet, lint and ALL tests
+test-short                     Runs vet, lint and tests (excludes integration tests)
+update                         Update all project dependencies
+update-releaser                Update the goreleaser application
+vet                            Run the Go vet application
+```
+</details>
+
 ## Examples & Tests
 All unit tests and [examples](bitindex_test.go) run via [Travis CI](https://travis-ci.org/mrz1836/go-bitindex) and uses [Go version 1.14.x](https://golang.org/doc/go1.14). View the [deployment configuration file](.travis.yml).
 
@@ -58,21 +98,18 @@ Examples & Tests by API section:
 
 Run all tests (including integration tests)
 ```bash
-$ cd ../go-bitindex
-$ go test ./... -v
+$ make test
 ```
 
 Run tests (excluding integration tests)
 ```bash
-$ cd ../go-bitindex
-$ go test ./... -v -test.short
+$ make test-short
 ```
 
 ## Benchmarks
 Run the Go [benchmarks](bitindex_test.go):
 ```bash
-$ cd ../go-bitindex
-$ go test -bench . -benchmem
+$ make bench
 ```
 
 ## Code Standards
@@ -82,7 +119,7 @@ Read more about this Go project's [code standards](CODE_STANDARDS.md).
 - View the [bitindex examples](#examples--tests) above
 
 Basic implementation:
-```golang
+```go
 package main
 
 import (
