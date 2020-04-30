@@ -1,5 +1,5 @@
 # go-bitindex
-**go-bitindex** is the unofficial golang implementation for the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
+> The unofficial Go implementation for the [BitIndex API](https://www.bitindex.network/developers/api-documentation-v3.html)
 
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/go-bitindex)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/go-bitindex.svg?branch=master&v=1)](https://travis-ci.com/mrz1836/go-bitindex)
@@ -21,8 +21,8 @@
 ## Installation
 
 **go-bitindex** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
-```bash
-$ go get -u github.com/mrz1836/go-bitindex
+```shell script
+go get -u github.com/mrz1836/go-bitindex
 ```
 
 ## Documentation
@@ -57,8 +57,8 @@ Use `make release-snap` to create a snapshot version of the release, and finally
 <summary><strong><code>Makefile Commands</code></strong></summary>
 
 View all `makefile` commands
-```bash
-$ make help
+```shell script
+make help
 ```
 
 List of all current commands:
@@ -97,19 +97,19 @@ Examples & Tests by API section:
 - [xpub](xpub_test.go)
 
 Run all tests (including integration tests)
-```bash
-$ make test
+```shell script
+make test
 ```
 
 Run tests (excluding integration tests)
-```bash
-$ make test-short
+```shell script
+make test-short
 ```
 
 ## Benchmarks
 Run the Go [benchmarks](bitindex_test.go):
-```bash
-$ make bench
+```shell script
+make bench
 ```
 
 ## Code Standards
