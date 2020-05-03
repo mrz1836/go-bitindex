@@ -4,7 +4,6 @@
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/go-bitindex)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/go-bitindex.svg?branch=master&v=1)](https://travis-ci.com/mrz1836/go-bitindex)
 [![Report](https://goreportcard.com/badge/github.com/mrz1836/go-bitindex?style=flat&v=1)](https://goreportcard.com/report/github.com/mrz1836/go-bitindex)
-[![codecov](https://codecov.io/gh/mrz1836/go-bitindex/branch/master/graph/badge.svg?v=1)](https://codecov.io/gh/mrz1836/go-bitindex)
 [![Release](https://img.shields.io/github/release-pre/mrz1836/go-bitindex.svg?style=flat&v=2)](https://github.com/mrz1836/go-bitindex/releases)
 [![GoDoc](https://godoc.org/github.com/mrz1836/go-bitindex?status.svg&style=flat)](https://pkg.go.dev/github.com/mrz1836/go-bitindex)
 
