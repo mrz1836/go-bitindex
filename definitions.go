@@ -27,14 +27,11 @@ type APIInternalError struct {
 
 // APIErrorResponse is from bitindex (broadcast related errors)
 type APIErrorResponse struct {
-	Errors  []string           `json:"errors,omitempty"`
-	Message nestedErrorMessage `json:"message,omitempty"`
-}
-
-// nestedErrorMessage is the nested error from APIErrorResponse
-type nestedErrorMessage struct {
-	ErrorCode    int    `json:"code,omitempty"`
-	ErrorMessage string `json:"message,omitempty"`
+	Error        string   `json:"error,omitempty"`
+	ErrorCode    int      `json:"code,omitempty"`
+	ErrorMessage string   `json:"message,omitempty"`
+	Errors       []string `json:"errors,omitempty"`
+	Success      bool     `json:"success,omitempty"`
 }
 
 // AddressInfo is the address info for a returned address request

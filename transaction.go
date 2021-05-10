@@ -63,7 +63,7 @@ func (c *Client) GetTransactionRaw(txID string) (rawTx *TransactionRaw, err erro
 // SendTransaction this endpoint broadcasts a raw transaction to the network.
 //
 // For more information: https://www.bitindex.network/developers/api-documentation-v3.html#Transactions
-func (c *Client) SendTransaction(rawTx string) (txID *SendTransactionResponse, err error) {
+func (c *Client) SendTransaction(rawTx string) (response *SendTransactionResponse, err error) {
 
 	// Create the request
 	var resp string
@@ -74,14 +74,14 @@ func (c *Client) SendTransaction(rawTx string) (txID *SendTransactionResponse, e
 	}
 
 	// Process the response
-	txID = new(SendTransactionResponse)
-	if err = json.Unmarshal([]byte(resp), txID); err != nil {
+	response = new(SendTransactionResponse)
+	if err = json.Unmarshal([]byte(resp), response); err != nil {
 		return
 	}
 
 	// Error from request?
 	if c.LastRequest.StatusCode != http.StatusOK {
-		err = fmt.Errorf("error: %s", txID.Message.ErrorMessage)
+		err = fmt.Errorf("error: %s", response.ErrorMessage)
 		return
 	}
 	return
